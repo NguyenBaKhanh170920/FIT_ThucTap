@@ -1,0 +1,119 @@
+﻿@model IEnumerable<AspNetCoreWebApp.Models.TbUser>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5a6268;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .btn-danger:hover {
+                background-color: #bd2130;
+            }
+    </style>
+</head>
+<body>
+
+<h1>List of User </h1>
+    <p class="text-danger">@TempData["Mes"]</p>
+<table class="table" border="1">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Password
+            </th>
+            <th>
+                Temp Pass
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.Password
+                </td>
+                <td>
+                        @item.Temppass
+                    </td>
+                    <th>
+                        <a asp-action="EditUser" asp-route-id="@item.Id"  >Edit |</a>
+                        <a asp-action="DeleteUser" asp-route-id="@item.Id">Delete</a>
+                    </th>
+            </tr>
+        }
+    </tbody>
+</table>
+    
+    <a asp-action="AddUser">Add User</a>
+</body>
+</html>
